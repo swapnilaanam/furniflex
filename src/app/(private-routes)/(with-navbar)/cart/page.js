@@ -86,7 +86,7 @@ const Cart = () => {
                                 Subtotal
                             </div>
                             <div className="flex-1 text-right text-[#0E0E0E] text-[24px] font-semibold leading-[28.8px]">
-                                € 1071.00
+                                € {cartAmount}.00
                             </div>
                         </div>
                     </div>

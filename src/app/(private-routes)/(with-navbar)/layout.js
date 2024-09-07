@@ -8,7 +8,7 @@ const NavbarLayOut = ({ children }) => {
       <main>
         {children}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </main>
   )
 }
