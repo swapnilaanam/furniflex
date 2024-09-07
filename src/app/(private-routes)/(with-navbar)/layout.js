@@ -1,3 +1,4 @@
+import Footer from "@/components/Shared/Footer";
 import Navbar from "@/components/Shared/Navbar";
 
 const NavbarLayOut = ({ children }) => {
@@ -7,6 +8,7 @@ const NavbarLayOut = ({ children }) => {
       <main>
         {children}
       </main>
+      {/* <Footer /> */}
     </main>
   )
 }

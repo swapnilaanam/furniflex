@@ -5,24 +5,27 @@ import Product from "@/components/Product"
 import leftArrowImage from "@/assets/left-arrow.svg";
 import rightArrowImage from "@/assets/right-arrow.svg";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductsContext } from "@/providers/ProductsProvider";
 
 const Products = () => {
   const { products } = useContext(ProductsContext);
+  const [isRocking, setIsRocking] = useState(true);
+  const [isSide, setIsSide] = useState(false);
+  const [isLounge, setIsLounge] = useState(false);
 
   return (
     <section className="mt-[80px] mb-[96px] max-w-[1199px] mx-auto flex justify-between">
       <aside className="w-[263px] h-[1000px] flex flex-col items-start border-r border-[#E8E8E8]">
-        <button className="w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg">
+        <button onClick={() => { setIsRocking(true); setIsSide(false); setIsLounge(false); }} className={`${isRocking && 'bg-[#0E0E0E] text-[#FFFFFF] font-semibold rounded-lg'} w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg`}>
           Rocking Chair
         </button>
         <div className="my-[12px] w-[231px] border border-[#F4F4F4]"></div>
-        <button className="w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg">
+        <button onClick={() => { setIsRocking(false); setIsSide(true); setIsLounge(false); }} className={`${isSide && 'bg-[#0E0E0E] text-[#FFFFFF] font-semibold rounded-lg'} w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg`}>
           Side Chair
         </button>
         <div className="my-[12px] w-[231px] border border-[#F4F4F4]"></div>
-        <button className="w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg">
+        <button onClick={() => { setIsRocking(false); setIsSide(false); setIsLounge(true); }} className={`${isLounge && 'bg-[#0E0E0E] text-[#FFFFFF] font-semibold rounded-lg'} w-[231px] h-[53px] flex pl-[24px] pt-[12px] text-[#717171] text-[22px] font-medium leading-[26.4px] hover:bg-[#0E0E0E] hover:text-[#FFFFFF] hover:font-semibold hover:rounded-lg`}>
           Lounge Chair
         </button>
       </aside>

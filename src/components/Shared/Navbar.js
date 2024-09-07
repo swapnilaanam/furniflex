@@ -10,13 +10,16 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/providers/CartProvider";
 import { AuthContext } from "@/providers/AuthProvider";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
     const [cartCount, setCartCount] = useState(0);
     const [isShown, setIsShown] = useState(false);
 
     const { cart } = useContext(CartContext);
-    const {signOutUser} = useContext(AuthContext);
+    const { signOutUser } = useContext(AuthContext);
+
+    const pathName = usePathname();
 
     useEffect(() => {
         if (cart?.cartItems) {
@@ -27,40 +30,42 @@ const Navbar = () => {
     return (
         <nav className="w-full h-[118px] bg-[#FFFFFF] border-b border-[#F1F1F1]">
             <div className="max-w-[1200px] h-full mx-auto flex justify-between items-center">
-                <div className="flex justify-center items-center gap-1.5">
-                    <div className="relative w-[38px] h-[38px]">
-                        <Image fill={true} src={navIconImage} alt="Nav Icon" className="w-full h-full object-cover" />
+                <Link href="/">
+                    <div className="flex justify-center items-center gap-1.5">
+                        <div className="relative w-[38px] h-[38px]">
+                            <Image fill={true} src={navIconImage} alt="Nav Icon" className="w-full h-full object-cover" />
+                        </div>
+                        <h1 className={`${inter.className} text-[20px] font-bold leading-[24px]`}>
+                            Furni
+                            <span className="text-[#1E99F5]">
+                                Flex
+                            </span>
+                        </h1>
                     </div>
-                    <h1 className={`${inter.className} text-[20px] font-bold leading-[24px]`}>
-                        Furni
-                        <span className="text-[#1E99F5]">
-                            Flex
-                        </span>
-                    </h1>
-                </div>
+                </Link>
                 <ul className="flex justify-center items-center gap-2">
                     <li>
-                        <Link href="/" className="py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] rounded-md">
+                        <Link href="/" className={`${pathName === '/' && 'bg-[#F8F8F8] font-semibold'} py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] hover:font-semibold rounded-md`}>
                             Home
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] rounded-md">
+                        <Link href="/products" className={`${pathName === '/products' && 'bg-[#F8F8F8] font-semibold'} py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] hover:font-semibold rounded-md`}>
                             Products
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] rounded-md">
+                        <Link href="/categories" className={`${pathName === '/categories' && 'bg-[#F8F8F8] font-semibold'} py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] hover:font-semibold rounded-md`}>
                             Categories
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] rounded-md">
+                        <Link href="/custom" className={`${pathName === '/custom' && 'bg-[#F8F8F8] font-semibold'} py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] hover:font-semibold rounded-md`}>
                             Custom
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] rounded-md">
+                        <Link href="/blog" className={`${pathName === '/blog' && 'bg-[#F8F8F8] font-semibold'} py-2 px-5 text-[18px] font-medium leading-[21.6px] hover:bg-[#F8F8F8] hover:font-semibold rounded-md`}>
                             Blog
                         </Link>
                     </li>
@@ -74,11 +79,11 @@ const Navbar = () => {
                             </div>
                         </div>
                     </Link>
-                    <div onClick={() => setIsShown(!isShown)} className="relative w-[40px] h-[40px]">
+                    <div onClick={() => setIsShown(!isShown)} className="relative w-[40px] h-[40px] cursor-pointer">
                         <Image fill={true} src={profileIconImage} alt="Profile Icon" className="w-full h-full object-cover" />
                         {
                             isShown && (
-                                <div className="absolute top-12 -right-10 z-50">
+                                <div className="absolute top-14 -right-14 z-50">
                                     <button onClick={() => signOutUser()} className="bg-red-600 text-white text-sm font-medium w-fit px-12 py-2 text-nowrap rounded-md">
                                         Sign Out
                                     </button>
